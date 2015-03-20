@@ -18,7 +18,7 @@ var paths = {
 };
 
 gulp.task('default', ['sass']);
-gulp.task('build', ['env', 'sass', 'cleanup-www', 'copy-ignore', 'autoprefix']);
+gulp.task('build', ['env', 'sass', 'cleanup-www', 'copy-ignore']);
 
 gulp.task('env', function () {
   gulp.src(envPath)
@@ -32,6 +32,9 @@ gulp.task('env', function () {
 gulp.task('sass', function() {
   gulp.src('./app/scss/app.scss')
     .pipe(sass())
+    .pipe(autoprefixer({
+      browsers: ['iOS > 6', 'last 2 Chrome versions']
+    }))
     .pipe(gulp.dest('./app/css/'));
 });
 
@@ -55,10 +58,6 @@ gulp.task('copy-ignore', function(){
 
   gulp.src(paths)
     .pipe(gulp.dest('./www/'));
-});
-
-gulp.task('autoprefix', function(){
-
 });
 
 gulp.task('watch', function() {
