@@ -4,4 +4,5 @@
 node_modules/
 platforms/
 app/lib/
+app/js/env.js
 environments/*.json
