@@ -9,6 +9,7 @@ var del = require('del');
 var ngConstant = require('gulp-ng-constant');
 var rename = require('gulp-rename');
 var autoprefixer = require('gulp-autoprefixer');
+var sourcemaps = require('gulp-sourcemaps');
 
 var env = gutil.env.env || 'development';
 var envPath = './environments/' + env + '.json'
@@ -43,10 +44,12 @@ gulp.task('env', function () {
 
 gulp.task('sass', function() {
   gulp.src('./app/scss/app.scss')
-    .pipe(sass())
-    .pipe(autoprefixer({
-      browsers: ['iOS > 6', 'last 2 Chrome versions']
-    }))
+    .pipe(sourcemaps.init())
+      .pipe(sass())
+      // .pipe(autoprefixer({
+      //   browsers: ['iOS > 6', 'last 2 Chrome versions']
+      // }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./app/css/'));
 });
 
