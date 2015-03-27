@@ -21,12 +21,24 @@ gulp.task('default', ['sass']);
 gulp.task('build', ['env', 'sass', 'cleanup-www', 'copy-ignore']);
 
 gulp.task('env', function () {
-  gulp.src(envPath)
-    .pipe(ngConstant({
-      name: 'app.env'
-    }))
-    .pipe(rename('env.js'))
-    .pipe(gulp.dest('./app/js'));
+  if ( !fs.existsSync(envPath) ) {
+    console.log('[warning] Could not find '+ env +' environment file. Creating it from environment.json.example...');
+    gulp.src('./environments/environment.json.example')
+      .pipe(rename(env+'.json'))
+      .pipe(gulp.dest('./environments'))
+      .pipe(ngConstant({
+        name: 'app.env'
+      }))
+      .pipe(rename('env.js'))
+      .pipe(gulp.dest('./app/js'));
+  } else {
+    gulp.src(envPath)
+      .pipe(ngConstant({
+        name: 'app.env'
+      }))
+      .pipe(rename('env.js'))
+      .pipe(gulp.dest('./app/js'));
+  }
 });
 
 gulp.task('sass', function() {
