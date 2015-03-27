@@ -2,7 +2,26 @@
 # http://git-scm.com/docs/gitignore
 
 node_modules/
-platforms/
 app/lib/
 app/js/env.js
 environments/*.json
+/www
+
+# iOS
+platforms/ios/build/
+platforms/ios/www/
+platforms/ios/cordova/console.log
+*.xcuserdatad
+
+# android
+platforms/android/assets/www
+platforms/android/bin
+platforms/android/gen
+platforms/android/local.properties
+platforms/android/ant-build
+platforms/android/ant-gen
+platforms/android/CordovaLib/ant-build
+platforms/android/CordovaLib/ant-gen
+platforms/android/CordovaLib/bin
+platforms/android/CordovaLib/gen
+platforms/android/CordovaLib/local.properties
