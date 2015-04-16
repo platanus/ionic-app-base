@@ -42,10 +42,10 @@ gulp.task('env', function () {
   }
 });
 
-gulp.task('sass', function() {
+gulr.task('sass', function() {
   gulp.src('./app/scss/app.scss')
     .pipe(sourcemaps.init())
-      .pipe(sass())
+      .pipe(sass({errLogToConsole: true}))
       // .pipe(autoprefixer({
       //   browsers: ['iOS > 6', 'last 2 Chrome versions']
       // }))
