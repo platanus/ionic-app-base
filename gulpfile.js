@@ -42,7 +42,7 @@ gulp.task('env', function () {
   }
 });
 
-gulr.task('sass', function() {
+gulp.task('sass', function() {
   gulp.src('./app/scss/app.scss')
     .pipe(sourcemaps.init())
       .pipe(sass({errLogToConsole: true}))
